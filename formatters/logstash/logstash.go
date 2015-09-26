@@ -7,9 +7,9 @@ import (
 	"github.com/Sirupsen/logrus"
 )
 
-// LogstashFormatter generates json in logstash format.
+// Formatter generates json in logstash format.
 // Logstash site: http://logstash.net/
-type LogstashFormatter struct {
+type Formatter struct {
 	Type string // if not empty use for logstash type field.
 
 	// TimestampFormat sets the format used for timestamps.
@@ -17,7 +17,7 @@ type LogstashFormatter struct {
 }
 
 // Format implements the logrus formatter.
-func (f *LogstashFormatter) Format(entry *logrus.Entry) ([]byte, error) {
+func (f *Formatter) Format(entry *logrus.Entry) ([]byte, error) {
 	entry.Data["@version"] = 1
 
 	if f.TimestampFormat == "" {
